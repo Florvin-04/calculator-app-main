@@ -1,26 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Calculator app</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Frontend Mentor | Calculator app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="calculator">
+      <div class="calculator__wrapper">
+        <header class="calculator__header">
+          <p>calc</p>
+          <div class="theme__toggle--container">
+            <p>theme</p>
+            <button class="theme__buttons" toggle-theme-button-parent>
+              <label class="label" for="dark">
+                <input id="dark" type="radio" name="theme" toggle-theme-button />
+              </label>
+              <label class="label" for="light">
+                <input id="light" type="radio" name="theme" toggle-theme-button />
+              </label>
+              <label class="label" for="dark-violet">
+                <input id="dark-violet" type="radio" name="theme" toggle-theme-button />
+              </label>
+              <!-- <input id="red" type="radio" name="theme" />
+              <input id="blue" type="radio" name="theme" />
+              <input id="green" type="radio" name="theme" /> -->
+            </button>
+          </div>
+        </header>
 
+        <section class="calculator__screen">
+          <p class="previous-input" previous-input></p>
+          <p class="calculator__number-display" display-number>0</p>
+          <p class="calculator__number-display--placeholder" placeholder-number>0</p>
+        </section>
 
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+        <section class="calculator__number-inputs">
+          <button calc-btn class="button__item" data-number="7">7</button>
+          <button calc-btn class="button__item" data-number="8">8</button>
+          <button calc-btn class="button__item" data-number="9">9</button>
+          <button calc-btn class="button__item delete-btn" data-delete="del">DEL</button>
+          <button calc-btn class="button__item" data-number="4">4</button>
+          <button calc-btn class="button__item" data-number="5">5</button>
+          <button calc-btn class="button__item" data-number="6">6</button>
+          <button calc-btn class="button__item" data-operation="+">+</button>
+          <button calc-btn class="button__item" data-number="1">1</button>
+          <button calc-btn class="button__item" data-number="2">2</button>
+          <button calc-btn class="button__item" data-number="3">3</button>
+          <button calc-btn class="button__item" data-operation="-">-</button>
+          <button calc-btn class="button__item" data-number=".">.</button>
+          <button calc-btn class="button__item" data-number="0">0</button>
+          <button calc-btn class="button__item" data-operation="/">/</button>
+          <button calc-btn class="button__item" data-operation="*">x</button>
+          <button calc-btn class="button__item reset-btn" data-reset="reset">RESET</button>
+          <button calc-btn class="button__item equal-btn" data-equals="=">=</button>
+        </section>
+      </div>
+    </main>
+
+    <div class="attribution">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a href="https://github.com/Florvin-04/calculator-app-main.git">FLORVIN</a>.</div>
+  </body>
 </html>

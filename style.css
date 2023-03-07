@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap");
+
+/* https://andy-bell.co.uk/a-modern-css-reset/ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding: 0;
+  line-height: 1;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+:root {
+  /* background */
+  --Primary-main-background: 222 26% 31%;
+  --Primary-keypad-background: 223 31% 20%; /* (toggle background,  */
+  --Primary-screen-background: 224 36% 15%;
+
+  /* keys */
+  --Neutral-100-key-background: 225 21% 49%;
+  --Neutral-100-key-shadow: 224 28% 35%;
+
+  --Neutral-200-key-background: 6 63% 50%; /* toggle */
+  --Neutral-200-key-shadow: 6 70% 34%;
+
+  --Neutral-300-key-background: 30 25% 89%;
+  --Neutral-300-key-shadow: 28 16% 65%;
+
+  /* text */
+  --Neutral-100-txt-clr: 221 14% 31%;
+  --Neutral-200-txt-clr: 0 0% 100%;
+
+  --Header-clr-text: 0 0% 100%;
+  --Equal-dark-clr: var(--Neutral-200-txt-clr);
+}
+
+.light-theme {
+  --Primary-main-background: 0 0% 90%;
+  --Primary-keypad-background: 0 5% 81%;
+  --Primary-screen-background: 0 0% 93%;
+
+  --Neutral-100-key-background: 185 42% 37%;
+  --Neutral-100-key-shadow: 185 58% 25%;
+
+  --Neutral-200-key-background: 25 98% 40%; /* toggle */
+  --Neutral-200-key-shadow: 25 99% 27%;
+
+  --Neutral-300-key-background: 45 7% 89%;
+  --Neutral-300-key-shadow: 35 11% 61%;
+
+  --Neutral-100-txt-clr: 60 10% 19%;
+  --Neutral-200-txt-clr: 0 0% 100%;
+
+  --Header-clr-text: 60 10% 19%;
+
+  --Equal-dark-clr: var(--Neutral-200-txt-clr);
+}
+
+.dark-violet-theme {
+  --Primary-main-background: 268 75% 9%;
+  --Primary-keypad-background: 268 71% 12%;
+  --Primary-screen-background: 268 71% 12%;
+
+  --Neutral-100-key-background: 281 89% 26%;
+  --Neutral-100-key-shadow: 285 91% 52%;
+
+  --Neutral-200-key-background: 176 100% 44%; /* toggle */
+  --Neutral-200-key-shadow: 177 92% 70%;
+
+  --Neutral-300-key-background: 268 47% 21%;
+  --Neutral-300-key-shadow: 290 70% 36%;
+
+  --Neutral-300-txt-clr: 198 20% 13%;
+  --Neutral-200-txt-clr: 0 0% 100%;
+  --Neutral-100-txt-clr: 52 100% 62%;
+
+  --Header-clr-text: var(--Neutral-100-txt-clr);
+  --Number-hover: var(--Neutral-100-key-background);
+
+  --Equal-dark-clr: 198 20% 13%;
+}
+
+body {
+  font-size: 2rem;
+  font-family: "League Spartan", sans-serif;
+
+  display: grid;
+  place-items: center;
+
+  background-color: hsl(var(--Primary-main-background));
+}
+
+.calculator {
+  width: 90%;
+  max-width: 500px;
+  min-width: 500px;
+}
+
+/* header */
+
+.calculator__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: hsl(var(--Header-clr-text));
+}
+
+.theme__toggle--container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.theme__toggle--container > p {
+  text-transform: uppercase;
+  font-size: 1rem;
+  display: block;
+}
+
+.theme__buttons {
+  background-color: hsl(var(--Primary-keypad-background));
+  border-radius: 100px;
+  border: none;
+  font-size: 1rem;
+
+  position: relative;
+  isolation: isolate;
+  width: 5rem;
+  display: flex;
+  justify-content: space-around;
+  /* height: 1rem; */
+  /* padding: .1em 1em; */
+}
+
+.theme__buttons::before {
+  content: "";
+  position: absolute;
+
+  background-color: hsl(var(--Neutral-200-key-background));
+  aspect-ratio: 1/ 1;
+  width: 25%;
+  border-radius: 50%;
+  top: 50%;
+  left: var(--checked, 20%);
+  transform: translate(-50%, -50%);
+
+  transition: left 500ms;
+}
+/* .theme__buttons:hover::before {
+  filter: brightness(50%);
+} */
+
+.label {
+  /* position: absolute; */
+  position: relative;
+  /* background-color: hsl(var(--Neutral-200-key-background) / 0.3); */
+  background-color: transparent;
+  aspect-ratio: 1/ 1;
+  width: 50%;
+  border-radius: 50%;
+
+  transition: left 500ms;
+  cursor: pointer;
+}
+
+.label::after {
+  content: var(--toggle-number, ".");
+  position: absolute;
+  top: -1.1875rem;
+  /* bottom: 0; */
+  left: 38%;
+  font-size: 0.7rem;
+  color: hsl(var(--Header-clr-text));
+}
+
+label[for="dark"] {
+  --toggle-number: "1";
+}
+
+label[for="light"] {
+  --toggle-number: "2";
+}
+
+label[for="dark-violet"] {
+  --toggle-number: "3";
+}
+
+input[type="radio"] {
+  cursor: pointer;
+  position: relative;
+  z-index: -1;
+  visibility: hidden;
+}
+
+/* header end */
+
+/* calculator screen */
+
+.calculator__screen {
+  background-color: hsl(var(--Primary-screen-background));
+  color: hsl(var(--Header-clr-text));
+
+  padding: 0.3em 0.3em 0 0;
+  max-width: 100%;
+  font-size: 2.5rem;
+
+  border-radius: 0.3em;
+  overflow-x: auto;
+  position: relative;
+}
+
+.previous-input {
+  top: -0.1rem;
+  right: 1rem;
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0.5;
+}
+
+.calculator__number-display {
+  text-align: right;
+  display: var(--actual-number, none);
+}
+
+.calculator__number-display--placeholder {
+  text-align: right;
+  opacity: 0.3;
+  display: var(--placeholder, block);
+}
+
+/* calculator screen end */
+
+/* calculator inputs */
+
+.calculator__number-inputs {
+  margin-top: 0.5em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5em;
+
+  background-color: hsl(var(--Primary-keypad-background));
+
+  padding: 1em;
+  border-radius: 0.4em;
+}
+
+.button__item {
+  position: relative;
+  cursor: pointer;
+
+  box-shadow: -0.1px 3px 1px -0.3px var(--button-shadow, hsl(var(--Neutral-300-key-shadow)));
+  border: none;
+  border-radius: 0.2em;
+
+  color: var(--button-text-clr, hsl(var(--Neutral-100-txt-clr)));
+  background-color: var(--button-bg, hsl(var(--Neutral-300-key-background)));
+
+  padding-top: 0.2em;
+  isolation: isolate;
+}
+
+.button__item:hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: hsl(var(--Number-hover));
+  border-radius: inherit;
+}
+
+.equal-btn {
+  --button-text-clr: hsl(var(--Equal-dark-clr));
+}
+
+.equal-btn,
+.reset-btn {
+  grid-column: span 2;
+}
+
+.reset-btn,
+.delete-btn {
+  --button-text-clr: hsl(var(--Neutral-200-txt-clr));
+}
+
+.reset-btn,
+.delete-btn {
+  --button-bg: hsl(var(--Neutral-100-key-background));
+  --button-shadow: hsl(var(--Neutral-100-key-shadow));
+  font-size: 1.4rem;
+}
+
+.equal-btn {
+  --button-bg: hsl(var(--Neutral-200-key-background));
+  --button-shadow: hsl(var(--Neutral-200-key-shadow));
+}
+
+.equal-btn:hover::before,
+.delete-btn:hover::before,
+.reset-btn:hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: hsl(var(--Neutral-200-txt-clr) / 0.2);
+  border-radius: inherit;
+}
+
+/* calculator inputs end */
+
+/* :root:has(#light:checked) {
+  --Primary-main-background: 0 0% 90%;
+  --Primary-keypad-background: 0 5% 81%;
+  --Primary-screen-background: 0 0% 93%;
+
+  --Neutral-100-key-background: 185 42% 37%;
+  --Neutral-100-key-shadow: 185 58% 25%;
+
+  --Neutral-200-key-background: 25 98% 40%; 
+  --Neutral-200-key-shadow: 25 99% 27%;
+
+  --Neutral-300-key-background: 45 7% 89%;
+  --Neutral-300-key-shadow: 35 11% 61%;
+
+  --Neutral-100-txt-clr: 60 10% 19%;
+  --Neutral-200-txt-clr: 0 0% 100%;
+} */
