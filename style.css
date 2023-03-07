@@ -315,6 +315,11 @@ input[type="radio"] {
   isolation: isolate;
 }
 
+.button__item:active {
+  box-shadow: none;
+  transform: translateY(0.35rem);
+}
+
 .button__item:hover::before {
   content: "";
   position: absolute;
